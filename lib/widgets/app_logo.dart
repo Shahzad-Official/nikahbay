@@ -34,10 +34,13 @@ class AppLogo extends StatelessWidget {
             : null,
       ),
       child: Center(
-        child: SvgPicture.asset(
-          "assets/icons/logo.svg",
-          height: isShadowLogo ? 100 : null,
-          width: isShadowLogo ? 100 : null,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(60),
+          child: SvgPicture.asset(
+            "assets/icons/logo.svg",
+            height: isShadowLogo ? 100 : null,
+            width: isShadowLogo ? 100 : null,
+          ),
         ),
       ),
     );

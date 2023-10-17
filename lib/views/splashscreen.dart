@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
+import 'package:nikahbay/views/registeration/login.dart';
 import 'package:nikahbay/widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,6 +13,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 4), () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => const Login(),
+      ));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
