@@ -59,6 +59,7 @@ dependencies:
   top_snackbar_flutter: ^3.1.0
   scrollable_positioned_list: ^0.3.8
   dots_indicator: ^3.0.0
+  salomon_bottom_bar: ^3.3.2
 
 
   #image plugins
@@ -67,6 +68,7 @@ dependencies:
   cached_network_image: ^3.2.3
   flutter_image_compress: ^2.0.4
   path_provider: any
+
   
 
   #share plugins

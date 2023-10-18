@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
@@ -38,9 +37,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               SizedBox(
                 height: size.height * 0.1,
               ),
-              SvgPicture.asset(
-                "assets/icons/email_verify.svg",
-              ),
+              // SvgPicture.asset(
+              //   "assets/icons/email_verify.svg",
+              // ),
               AppSpacing.heigthSpace30,
               AppField(
                 controller: _controller.email,

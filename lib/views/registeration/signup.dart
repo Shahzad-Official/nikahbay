@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
 import 'package:nikahbay/controllers/registeration_controllers/signup_controllers.dart';
@@ -9,6 +10,8 @@ import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/registeration/login.dart';
 import 'package:nikahbay/widgets/app_button.dart';
 import 'package:nikahbay/widgets/app_field.dart';
+import 'package:nikahbay/widgets/app_shadowcontainer.dart';
+import 'package:nikahbay/widgets/app_text.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -35,10 +38,140 @@ class _SignupState extends State<Signup> {
             children: [
               AppSpacing.heigthSpace30,
               AppSpacing.heigthSpace20,
+              Center(
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      GetBuilder<SignupController>(
+                        init: SignupController(),
+                        initState: (_) {},
+                        builder: (_) {
+                          return AppShadowcontainer(
+                            height: 150,
+                            width: 150,
+                            image: _.profile == null
+                                ? const AssetImage(
+                                    "assets/images/placeholder.png",
+                                  )
+                                : FileImage(_.profile!) as ImageProvider,
+                            child: const SizedBox(),
+                          );
+                        },
+                      ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: IconButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => AppColors.primaryColor,
+                            ),
+                          ),
+                          onPressed: () {
+                            showModalBottomSheet(
+                              backgroundColor: Colors.white,
+                              context: context,
+                              builder: (context) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          AppNavigation.back(context);
+                                          _controller.pickProfile(
+                                              source: ImageSource.camera);
+                                        },
+                                        child: const SizedBox(
+                                          height: 120,
+                                          child: Column(
+                                            children: [
+                                              AppShadowcontainer(
+                                                child: Icon(
+                                                  Icons.camera_alt_outlined,
+                                                ),
+                                              ),
+                                              AppSpacing.heigthSpace10,
+                                              AppText(
+                                                text: "Camera",
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              AppSpacing.heigthSpace10,
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          AppNavigation.back(context);
+                                          _controller.pickProfile(
+                                              source: ImageSource.gallery);
+                                        },
+                                        child: const SizedBox(
+                                          height: 120,
+                                          child: Column(
+                                            children: [
+                                              AppShadowcontainer(
+                                                child: Icon(
+                                                  Icons.photo_outlined,
+                                                ),
+                                              ),
+                                              AppSpacing.heigthSpace10,
+                                              AppText(
+                                                text: "Gallery",
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              AppSpacing.heigthSpace10,
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.camera,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               AppSpacing.heigthSpace30,
+              Row(
+                children: [
+                  Expanded(
+                    child: AppField(
+                      controller: _controller.firstName,
+                      hintText: "First Name",
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: AppField(
+                      controller: _controller.lastName,
+                      hintText: "Last Name",
+                    ),
+                  ),
+                ],
+              ),
+              AppSpacing.heigthSpace20,
               AppField(
                 controller: _controller.firstName,
-                hintText: "Full Name",
+                hintText: "Username",
                 prefixIcon: const Icon(
                   Icons.person,
                   color: AppColors.primaryColor,

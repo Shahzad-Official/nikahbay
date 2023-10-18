@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:nikahbay/utils/app_image_utils.dart';
 
 import '../../utils/app_snackbar.dart';
 
@@ -9,10 +12,8 @@ class SignupController extends GetxController {
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController number = TextEditingController();
-  TextEditingController location = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController cpassword = TextEditingController();
-  TextEditingController refCode = TextEditingController();
 
   String countryCode = "";
 
@@ -38,6 +39,37 @@ class SignupController extends GetxController {
 
   File? profile;
   String base64Image = "";
+  pickProfile({required ImageSource source}) async {
+    // ignore: invalid_use_of_visible_for_testing_member
+    await ImagePicker.platform
+        .getImageFromSource(source: source)
+        .then((value) async {
+      if (value != null) {
+        var newprofile = File(value.path);
+        var fileSize = await AppImageUtils.fileSize(newprofile);
+        if (fileSize > 2) {
+          var file = await AppImageUtils.compressImage(
+            file: newprofile,
+            quality: fileSize > 5 && fileSize <= 10
+                ? 20
+                : fileSize > 10
+                    ? 30
+                    : 50,
+          );
+
+          profile = file;
+        } else {
+          profile = newprofile;
+        }
+        base64Image = base64Encode(profile!.readAsBytesSync());
+
+        update();
+      } else {}
+    }).catchError((err) {
+      if (err is PathAccessException) {
+      } else if (err is FileSystemException) {}
+    });
+  }
 
   registerUser(context) async {
     isLoading = true;
@@ -51,9 +83,6 @@ class SignupController extends GetxController {
     } else if (number.text.isEmpty) {
       AppSnackbar.showSnackbar(
           title: "Error", message: "Please enter your phone number!");
-    } else if (location.text.isEmpty) {
-      AppSnackbar.showSnackbar(
-          title: "Error", message: "Please select your location!");
     } else if (password.text.isEmpty || password.text.length < 6) {
       AppSnackbar.showSnackbar(
           title: "Error",
