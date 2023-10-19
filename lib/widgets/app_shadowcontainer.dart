@@ -27,13 +27,13 @@ class AppShadowcontainer extends StatelessWidget {
         shape: shape ?? BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFDED8D5).withOpacity(0.2),
+            color: const Color.fromARGB(255, 226, 227, 231).withOpacity(0.2),
             blurRadius: 6,
             spreadRadius: 2,
             offset: const Offset(0, 8),
           ),
           BoxShadow(
-            color: const Color(0xFFDED8D5).withOpacity(0.5),
+            color: const Color.fromARGB(255, 226, 227, 231).withOpacity(0.4),
             blurRadius: 14,
             spreadRadius: 4,
             offset: const Offset(0, 7),

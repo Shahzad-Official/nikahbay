@@ -51,14 +51,14 @@ class ProfileView extends StatelessWidget {
                       Row(
                         children: [
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.20,
-                            child: const LinearProgressIndicator(
-                              value: 0.7, // 70% progress
-                              backgroundColor: Colors.grey, // Background color
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.blue),
-                            ),
-                          ),
+                              width: MediaQuery.of(context).size.width * 0.20,
+                              child: LinearProgressIndicator(
+                                borderRadius: BorderRadius.circular(2),
+                                value: 0.7,
+                                backgroundColor: Colors.grey.withOpacity(0.3),
+                                valueColor: const AlwaysStoppedAnimation<Color>(
+                                    Color.fromARGB(255, 33, 243, 114)),
+                              )),
                           const SizedBox(
                             width: 7,
                           ),
@@ -124,6 +124,50 @@ class ProfileView extends StatelessWidget {
                 title: 'Matches',
                 icon: 'assets/icons/matches.svg',
                 onTap: () {},
+              ),
+              ProfileWidget(
+                title: 'Settings',
+                icon: 'assets/icons/settings.svg',
+                onTap: () {},
+              ),
+              ProfileWidget(
+                title: 'Subscription Plans',
+                icon: 'assets/icons/subscription.svg',
+                onTap: () {},
+              ),
+              ProfileWidget(
+                title: 'Chats',
+                icon: 'assets/icons/chat.svg',
+                onTap: () {},
+              ),
+              ProfileWidget(
+                title: 'Notification',
+                icon: 'assets/icons/notification.svg',
+                onTap: () {},
+              ),
+              ProfileWidget(
+                title: 'Profile Views',
+                icon: 'assets/icons/views.svg',
+                onTap: () {},
+              ),
+              ProfileWidget(
+                title: 'Shortlisted',
+                icon: 'assets/icons/logout.svg',
+                onTap: () {},
+              ),
+              AppSpacing.heigthSpace10,
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/icons/logout.svg',
+                    height: 30,
+                    width: MediaQuery.of(context).size.width * 0.08,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  AppText(text: "Logout")
+                ],
               )
             ],
           ),
@@ -148,7 +192,7 @@ class ProfileWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        height: 80,
+        height: 55,
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,7 +209,7 @@ class ProfileWidget extends StatelessWidget {
                 ),
                 AppText(
                   text: title,
-                  fontSize: 18,
+                  fontSize: 17,
                   fontWeight: FontWeight.w500,
                 ),
               ],
