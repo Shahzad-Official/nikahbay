@@ -14,12 +14,22 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  PageController? _pageController;
+  late PageController _pageController;
+  final MainPageController _controller = Get.put(MainPageController());
+
+  @override
+  void initState() {
+    _pageController = PageController(
+      initialPage: _controller.selectedIndex,
+    );
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<MainPageController>(
+   body: GetBuilder<MainPageController>(
         init: MainPageController(),
         builder: (controller) {
           return PageView.builder(
@@ -35,13 +45,18 @@ class _MainPageState extends State<MainPage> {
           );
         },
       ),
-      bottomNavigationBar: GetBuilder<MainPageController>(
+         bottomNavigationBar: GetBuilder<MainPageController>(
         init: MainPageController(),
         builder: (_) {
           return SalomonBottomBar(
             currentIndex: _.selectedIndex,
             onTap: (value) {
               _.changeIndex(value);
+              _pageController.animateToPage(
+                value,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.ease,
+              );
             },
             items: [
               SalomonBottomBarItem(
