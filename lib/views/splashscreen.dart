@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: AppColors.secondaryColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -46,9 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
-                child: const AppLogo(
-                  isShadowLogo: false,
-                ),
+                child: const AppLogo(),
               ),
             ),
             AppSpacing.heigthSpace30,

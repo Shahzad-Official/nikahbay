@@ -42,18 +42,16 @@ class _LoginState extends State<Login> {
               Row(
                 children: [
                   const AppText(
-                    text: "Welcome To Nikahbay ",
+                    text: "Welcome To NikahBay ",
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
                   ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: SvgPicture.asset(
-                      "assets/icons/logo.svg",
-                      color: AppColors.primaryColor,
-                      height: 35,
-                      width: 35,
-                    ),
+                  SvgPicture.asset(
+                    "assets/icons/logo.svg",
+                    // ignore: deprecated_member_use
+                    color: AppColors.primaryColor,
+                    height: 35,
+                    width: 35,
                   ),
                 ],
               ),
@@ -86,9 +84,7 @@ class _LoginState extends State<Login> {
                         _.changeObsecurity();
                       },
                       icon: Icon(
-                        _.isObsecure
-                            ? Icons.visibility_outlined
-                            : Icons.visibility_off_outlined,
+                        _.isObsecure ? Icons.visibility_outlined : Icons.visibility_off_outlined,
                       ),
                     ),
                   );
@@ -159,8 +155,7 @@ class _LoginState extends State<Login> {
                                     size: 20,
                                   )
                                 : Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
                                       SvgPicture.asset(
                                         "assets/icons/google.svg",

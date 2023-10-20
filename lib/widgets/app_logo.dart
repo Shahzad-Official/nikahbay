@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nikahbay/constants/app_colors.dart';
 
 class AppLogo extends StatelessWidget {
   final bool isShadowLogo;
@@ -34,13 +35,13 @@ class AppLogo extends StatelessWidget {
             : null,
       ),
       child: Center(
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(60),
-          child: SvgPicture.asset(
-            "assets/icons/logo.svg",
-            height: isShadowLogo ? 100 : null,
-            width: isShadowLogo ? 100 : null,
-          ),
+        child: SvgPicture.asset(
+          "assets/icons/app_logo.svg",
+          height: 100,
+          width: 70,
+          fit: BoxFit.fitHeight,
+          // ignore: deprecated_member_use
+          color: AppColors.primaryColor,
         ),
       ),
     );
