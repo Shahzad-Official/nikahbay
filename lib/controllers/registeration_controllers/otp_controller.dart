@@ -64,13 +64,16 @@ class OtpController extends GetxController {
   bool isLoading = false;
   verifyOtp(context, {required bool isForgetEmail}) async {
     if (otp.text.isEmpty || otp.text.length < 5) {
-      AppSnackbar.showSnackbar(
-          title: "Error", message: "Please enter valid otp!");
+      AppSnackbar.showSnackbar(title: "Error", message: "Please enter valid otp!");
     } else {
       isLoading = true;
       update();
-      AppNavigation.offAll(context,
-          nextPage: SuccessfullRegistration(isForgetPass: true));
+      AppNavigation.offAll(
+        context,
+        nextPage: SuccessfullRegistration(
+          isForgetPass: isForgetEmail,
+        ),
+      );
 
       isLoading = false;
       update();

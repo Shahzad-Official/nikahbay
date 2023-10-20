@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
+import 'package:nikahbay/widgets/app_cached_image.dart';
 import 'package:nikahbay/widgets/app_text.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -15,108 +17,87 @@ class ProfileView extends StatelessWidget {
           padding: AppSpacing.defaultPadding,
           child: Column(
             children: [
-              const AppText(
-                text: "Profile",
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-              ),
-              AppSpacing.heigthSpace30,
-              Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.network(
-                      "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
-                      height: 100,
-                      width: MediaQuery.of(context).size.width * 0.24,
+              AppSpacing.heigthSpace10,
+              SizedBox(
+                height: 120,
+                width: 120,
+                child: Stack(
+                  children: [
+                    AppCachedImage(
+                      height: 120,
+                      width: 120,
+                      shape: BoxShape.circle,
+                      isShadow: true,
                       fit: BoxFit.cover,
+                      url: "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+                    ),
+                    Positioned(
+                      bottom: 5,
+                      right: 5,
+                      child: SvgPicture.asset(
+                        "assets/icons/verify_tick.svg",
+                        height: 20,
+                        width: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              AppSpacing.heigthSpace10,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const AppText(
+                    text: "Azhar Khan",
+                    fontSize: 17,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  AppSpacing.heigthSpace10,
+                  Container(
+                    height: 30,
+                    width: MediaQuery.of(context).size.width * 0.50,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: AppColors.primaryColor,
+                        ),
+                        borderRadius: BorderRadius.circular(4)),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            flex: 2,
+                            child: InkWell(
+                              onTap: () {},
+                              child: const ColoredBox(
+                                color: AppColors.primaryColor,
+                                child: Center(
+                                  child: AppText(
+                                    text: "Basic",
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            )),
+                        Container(
+                          height: 30,
+                          width: 1,
+                          decoration: const BoxDecoration(color: AppColors.primaryColor),
+                        ),
+                        Expanded(
+                            flex: 3,
+                            child: InkWell(
+                              onTap: () {},
+                              child: const Center(
+                                child: AppText(
+                                  text: "Upgrade Plan",
+                                  fontSize: 10,
+                                  color: AppColors.primaryColor,
+                                ),
+                              ),
+                            )),
+                      ],
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const AppText(
-                        text: "Azhar Khan",
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      const AppText(
-                        text: "username",
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      Row(
-                        children: [
-                          SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.20,
-                              child: LinearProgressIndicator(
-                                borderRadius: BorderRadius.circular(2),
-                                value: 0.7,
-                                backgroundColor: Colors.grey.withOpacity(0.3),
-                                valueColor: const AlwaysStoppedAnimation<Color>(
-                                    Color.fromARGB(255, 33, 243, 114)),
-                              )),
-                          const SizedBox(
-                            width: 7,
-                          ),
-                          const AppText(
-                            text: "70% Profile Completed",
-                            fontSize: 10,
-                          )
-                        ],
-                      ),
-                      AppSpacing.heigthSpace10,
-                      Container(
-                        height: 30,
-                        width: MediaQuery.of(context).size.width * 0.50,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: AppColors.primaryColor,
-                            ),
-                            borderRadius: BorderRadius.circular(4)),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 2,
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: const ColoredBox(
-                                    color: AppColors.primaryColor,
-                                    child: Center(
-                                      child: AppText(
-                                        text: "Basic",
-                                        fontSize: 12,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                )),
-                            Container(
-                              height: 30,
-                              width: 1,
-                              decoration: const BoxDecoration(
-                                  color: AppColors.primaryColor),
-                            ),
-                            Expanded(
-                                flex: 3,
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: const Center(
-                                    child: AppText(
-                                      text: "Upgrade Plan",
-                                      fontSize: 10,
-                                      color: AppColors.primaryColor,
-                                    ),
-                                  ),
-                                )),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )
                 ],
               ),
               AppSpacing.heigthSpace30,
@@ -152,7 +133,7 @@ class ProfileView extends StatelessWidget {
               ),
               ProfileWidget(
                 title: 'Shortlisted',
-                icon: 'assets/icons/logout.svg',
+                icon: 'assets/icons/favorite.svg',
                 onTap: () {},
               ),
               AppSpacing.heigthSpace10,

@@ -9,6 +9,7 @@ class AppCachedImage extends StatelessWidget {
   final Widget? child;
   final Color? color;
   final BoxFit? fit;
+  final bool isShadow;
   const AppCachedImage({
     Key? key,
     required this.url,
@@ -19,6 +20,7 @@ class AppCachedImage extends StatelessWidget {
     this.child,
     this.color,
     this.fit,
+    this.isShadow = false,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,20 @@ class AppCachedImage extends StatelessWidget {
             height: height,
             width: width,
             decoration: BoxDecoration(
+              boxShadow: isShadow
+                  ? [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.3),
+                        blurRadius: 15,
+                        offset: Offset(2, 5),
+                      ),
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.6),
+                        blurRadius: 15,
+                        offset: Offset(-2, -5),
+                      ),
+                    ]
+                  : null,
               color: color,
               borderRadius: borderRadius,
               shape: shape,
@@ -65,7 +81,8 @@ class AppCachedImage extends StatelessWidget {
             ),
             child: child,
           );
-        }, imageUrl: '',
+        },
+        imageUrl: url,
       ),
     );
   }

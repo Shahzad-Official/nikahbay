@@ -20,14 +20,14 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'NIKAHBAY',
+      title: 'NikahBay',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         appBarTheme: AppBarTheme(
           centerTitle: true,
           titleTextStyle: GoogleFonts.roboto(
             fontSize: 18,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
@@ -39,9 +39,9 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.light,
         primarySwatch: AppColors().customMaterialColor,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primaryColor,
+          seedColor: AppColors.darkColor,
           primary: AppColors.primaryColor,
-          secondary: AppColors.primaryColor,
+          secondary: AppColors.secondaryColor,
         ),
         scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
 import 'package:nikahbay/controllers/registeration_controllers/forget_password_controller.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/registeration/login.dart';
+import 'package:nikahbay/views/registeration/otp_verification.dart';
 import 'package:nikahbay/widgets/app_button.dart';
 import 'package:nikahbay/widgets/app_field.dart';
 import 'package:nikahbay/widgets/app_text.dart';
@@ -17,8 +19,7 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
-  final ForgetPasswordController _controller =
-      Get.put(ForgetPasswordController());
+  final ForgetPasswordController _controller = Get.put(ForgetPasswordController());
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -37,9 +38,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               SizedBox(
                 height: size.height * 0.1,
               ),
-              // SvgPicture.asset(
-              //   "assets/icons/email_verify.svg",
-              // ),
+              SvgPicture.asset(
+                "assets/icons/email_verify.svg",
+              ),
               AppSpacing.heigthSpace30,
               AppField(
                 controller: _controller.email,
@@ -56,7 +57,15 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 builder: (_) {
                   return AppButton(
                     isLoading: _.isLoading,
-                    onTap: () async {},
+                    onTap: () async {
+                      AppNavigation.to(
+                        context,
+                        nextPage: OtpVerification(
+                          email: "email",
+                          isForgetEmail: true,
+                        ),
+                      );
+                    },
                     text: "RESET PASSWORD",
                   );
                 },

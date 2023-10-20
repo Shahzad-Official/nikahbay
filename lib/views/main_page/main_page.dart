@@ -29,7 +29,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   body: GetBuilder<MainPageController>(
+      body: GetBuilder<MainPageController>(
         init: MainPageController(),
         builder: (controller) {
           return PageView.builder(
@@ -45,7 +45,7 @@ class _MainPageState extends State<MainPage> {
           );
         },
       ),
-         bottomNavigationBar: GetBuilder<MainPageController>(
+      bottomNavigationBar: GetBuilder<MainPageController>(
         init: MainPageController(),
         builder: (_) {
           return SalomonBottomBar(
@@ -65,9 +65,7 @@ class _MainPageState extends State<MainPage> {
                   height: 30,
                   width: 30,
                   // ignore: deprecated_member_use
-                  color: _.selectedIndex == 0
-                      ? AppColors.primaryColor
-                      : Colors.black,
+                  color: _.selectedIndex == 0 ? AppColors.primaryColor : Colors.black,
                 ),
                 title: const AppText(
                   text: "Home",
@@ -79,9 +77,7 @@ class _MainPageState extends State<MainPage> {
                   height: 30,
                   width: 30,
                   // ignore: deprecated_member_use
-                  color: _.selectedIndex == 1
-                      ? AppColors.primaryColor
-                      : Colors.black,
+                  color: _.selectedIndex == 1 ? AppColors.primaryColor : Colors.black,
                 ),
                 title: const AppText(
                   text: "Matches",
@@ -93,9 +89,7 @@ class _MainPageState extends State<MainPage> {
                   height: 30,
                   width: 30,
                   // ignore: deprecated_member_use
-                  color: _.selectedIndex == 2
-                      ? AppColors.primaryColor
-                      : Colors.black,
+                  color: _.selectedIndex == 2 ? AppColors.primaryColor : Colors.black,
                 ),
                 title: const AppText(
                   text: "Search",
@@ -107,9 +101,7 @@ class _MainPageState extends State<MainPage> {
                   height: 30,
                   width: 30,
                   // ignore: deprecated_member_use
-                  color: _.selectedIndex == 3
-                      ? AppColors.primaryColor
-                      : Colors.black,
+                  color: _.selectedIndex == 3 ? AppColors.primaryColor : Colors.black,
                 ),
                 title: const AppText(
                   text: "Profile",

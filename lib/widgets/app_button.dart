@@ -8,11 +8,15 @@ class AppButton extends StatelessWidget {
   final String text;
   final VoidCallback? onTap;
   final bool isLoading;
+  final double? height, width, fontSize;
   const AppButton({
     Key? key,
     required this.text,
     this.onTap,
     this.isLoading = false,
+    this.height,
+    this.width,
+    this.fontSize,
   }) : super(key: key);
 
   @override
@@ -20,6 +24,8 @@ class AppButton extends StatelessWidget {
     return InkWell(
       onTap: isLoading ? null : onTap,
       child: Container(
+        height: height,
+        width: width,
         padding: const EdgeInsets.symmetric(
           vertical: 10,
         ),
@@ -35,7 +41,7 @@ class AppButton extends StatelessWidget {
                 )
               : AppText(
                   text: text,
-                  fontSize: 17,
+                  fontSize: fontSize ?? 17,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
