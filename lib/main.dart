@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/views/main_page/main_page.dart';
-import 'package:nikahbay/views/splashscreen.dart';
 
 void main() {
   runApp(const MyApp());

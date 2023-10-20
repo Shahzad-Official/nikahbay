@@ -53,18 +53,18 @@ class HomeView extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  AppText(
+                                  const AppText(
                                     text: "Profile Completion",
                                     fontSize: 13,
                                     fontWeight: FontWeight.w500,
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   CircularPercentIndicator(
                                     radius: 20,
                                     percent: 0.5,
                                     progressColor: AppColors.primaryColor,
                                     circularStrokeCap: CircularStrokeCap.round,
-                                    center: AppText(
+                                    center: const AppText(
                                       text: "50%",
                                       fontSize: 8,
                                       fontWeight: FontWeight.w600,
@@ -183,13 +183,13 @@ class HomeView extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(left: 6, top: 10),
+                                  padding: const EdgeInsets.only(left: 6, top: 10),
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
-                                          Flexible(
+                                          const Flexible(
                                             child: AppText(
                                               text: "Samantha Jones ",
                                               fontWeight: FontWeight.w600,
@@ -205,12 +205,12 @@ class HomeView extends StatelessWidget {
                                         ],
                                       ),
                                       AppSpacing.heigthSpace5,
-                                      AppText(
+                                      const AppText(
                                         text: "26yrs, 5ft 2inch",
                                         fontSize: 11,
                                         color: Color.fromARGB(255, 179, 178, 178),
                                       ),
-                                      AppText(
+                                      const AppText(
                                         text: "#1234 Multan Punjab",
                                         fontSize: 11,
                                         color: Color.fromARGB(255, 179, 178, 178),
@@ -333,7 +333,7 @@ class HomeView extends StatelessWidget {
                               ],
                             ),
                             AppSpacing.heigthSpace30,
-                            AppText(
+                            const AppText(
                               text: "You will get more chance to match\nwhen you complete your profile",
                               fontWeight: FontWeight.w500,
                             ),

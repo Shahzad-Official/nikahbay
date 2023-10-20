@@ -39,12 +39,12 @@ class AppCachedImage extends StatelessWidget {
                       BoxShadow(
                         color: Colors.black.withOpacity(0.3),
                         blurRadius: 15,
-                        offset: Offset(2, 5),
+                        offset: const Offset(2, 5),
                       ),
                       BoxShadow(
                         color: Colors.white.withOpacity(0.6),
                         blurRadius: 15,
-                        offset: Offset(-2, -5),
+                        offset: const Offset(-2, -5),
                       ),
                     ]
                   : null,

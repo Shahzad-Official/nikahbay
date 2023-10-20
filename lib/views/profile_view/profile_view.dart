@@ -4,7 +4,6 @@ import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
 import 'package:nikahbay/widgets/app_cached_image.dart';
 import 'package:nikahbay/widgets/app_text.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -23,7 +22,7 @@ class ProfileView extends StatelessWidget {
                 width: 120,
                 child: Stack(
                   children: [
-                    AppCachedImage(
+                    const AppCachedImage(
                       height: 120,
                       width: 120,
                       shape: BoxShape.circle,
@@ -144,10 +143,10 @@ class ProfileView extends StatelessWidget {
                     height: 30,
                     width: MediaQuery.of(context).size.width * 0.08,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  AppText(text: "Logout")
+                  const AppText(text: "Logout")
                 ],
               )
             ],

@@ -60,7 +60,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                     onTap: () async {
                       AppNavigation.to(
                         context,
-                        nextPage: OtpVerification(
+                        nextPage: const OtpVerification(
                           email: "email",
                           isForgetEmail: true,
                         ),
