@@ -38,6 +38,7 @@ dependencies:
   
   #state_management plugins
   get: any
+  get_storage: ^2.1.1
 
   #internet plugins
   http: any
@@ -60,6 +61,7 @@ dependencies:
   top_snackbar_flutter: ^3.1.0
   scrollable_positioned_list: ^0.3.8
   dots_indicator: ^3.0.0
+  country_picker: ^2.0.21
   salomon_bottom_bar: ^3.3.2
 
 

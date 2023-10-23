@@ -32,7 +32,8 @@ class HomeView extends StatelessWidget {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: AppCachedImage(
-                            url: "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
+                            url:
+                                "https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg",
                             height: 140,
                             width: MediaQuery.of(context).size.width * 0.3,
                             fit: BoxFit.cover,
@@ -106,7 +107,8 @@ class HomeView extends StatelessWidget {
                                     Container(
                                       height: 30,
                                       width: 1,
-                                      decoration: const BoxDecoration(color: AppColors.primaryColor),
+                                      decoration: const BoxDecoration(
+                                          color: AppColors.primaryColor),
                                     ),
                                     Expanded(
                                       flex: 3,
@@ -173,19 +175,24 @@ class HomeView extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-                                  child: Image.network(
-                                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-GhyeRCrZKqtN9dIZzm1cWi0kBuUTTlA3KI7jFS9k&s",
+                                const ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      topRight: Radius.circular(10)),
+                                  child: AppCachedImage(
+                                    url:
+                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-GhyeRCrZKqtN9dIZzm1cWi0kBuUTTlA3KI7jFS9k&s",
                                     height: 100,
                                     width: double.infinity,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 6, top: 10),
+                                  padding:
+                                      const EdgeInsets.only(left: 6, top: 10),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         children: [
@@ -208,12 +215,14 @@ class HomeView extends StatelessWidget {
                                       const AppText(
                                         text: "26yrs, 5ft 2inch",
                                         fontSize: 11,
-                                        color: Color.fromARGB(255, 179, 178, 178),
+                                        color:
+                                            Color.fromARGB(255, 179, 178, 178),
                                       ),
                                       const AppText(
                                         text: "#1234 Multan Punjab",
                                         fontSize: 11,
-                                        color: Color.fromARGB(255, 179, 178, 178),
+                                        color:
+                                            Color.fromARGB(255, 179, 178, 178),
                                       ),
                                     ],
                                   ),
@@ -282,7 +291,8 @@ class HomeView extends StatelessWidget {
                               children: [
                                 SvgPicture.asset(
                                   "assets/icons/profession.svg",
-                                  width: MediaQuery.of(context).size.width * 0.12,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.12,
                                 ),
                                 const Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -323,7 +333,8 @@ class HomeView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 AppText(
-                                  text: "Complete your profile for \nmore response",
+                                  text:
+                                      "Complete your profile for \nmore response",
                                   fontWeight: FontWeight.w500,
                                 ),
                                 Icon(
@@ -334,7 +345,8 @@ class HomeView extends StatelessWidget {
                             ),
                             AppSpacing.heigthSpace30,
                             const AppText(
-                              text: "You will get more chance to match\nwhen you complete your profile",
+                              text:
+                                  "You will get more chance to match\nwhen you complete your profile",
                               fontWeight: FontWeight.w500,
                             ),
                             AppSpacing.heigthSpace20,
