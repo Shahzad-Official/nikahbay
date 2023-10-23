@@ -97,9 +97,12 @@ class SettingsScreen extends StatelessWidget {
                       SizedBox(
                         width: 100,
                         child: Switch(
-                          value: controller.isSwitched,
+                          value: controller.isSwitched.value,
                           onChanged: (value) {
                             controller.changeSwitch(value);
+                            Get.changeThemeMode(controller.isSwitched.value
+                                ? ThemeMode.dark
+                                : ThemeMode.light);
                           },
                         ),
                       ),

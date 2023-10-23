@@ -1,9 +1,12 @@
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart';
 
 class SettingsController extends GetxController {
-  bool isSwitched = false;
+  var isSwitched = false.obs;
+  
+
   void changeSwitch(bool value) {
-    isSwitched = value;
+    isSwitched.value = value;
     update();
   }
+  
 }
