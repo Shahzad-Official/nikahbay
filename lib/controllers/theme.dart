@@ -22,7 +22,7 @@ class Themes {
   );
 
   final darkTheme = ThemeData.dark().copyWith(
-    iconTheme: IconThemeData(color: Colors.white),
+    iconTheme: const IconThemeData(color: Colors.white),
     primaryColor: Colors.blueGrey[300],
     brightness: Brightness.light,
     scaffoldBackgroundColor: const Color(0xff21262D),

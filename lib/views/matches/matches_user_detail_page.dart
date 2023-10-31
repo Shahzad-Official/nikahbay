@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
+import 'package:nikahbay/controllers/matches_controller/mtacches_detail.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/matches/matches.dart';
+import 'package:nikahbay/views/matches/mtaches_detail_screens/professional_info.dart';
+import 'package:nikahbay/views/matches/mtaches_detail_screens/personal_info.dart';
+import 'package:nikahbay/views/matches/mtaches_detail_screens/preferences.dart';
+import 'package:nikahbay/views/matches/mtaches_detail_screens/religion_info.dart';
 import 'package:nikahbay/widgets/app_cached_image.dart';
 import 'package:nikahbay/widgets/app_text.dart';
 
@@ -126,127 +133,128 @@ class _MatchDetailState extends State<MatchDetail> {
                 ],
               ),
               AppSpacing.heigthSpace10,
-              Padding(
-                padding: AppSpacing.defaultPadding,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const AppText(
-                      text: "Information",
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    AppSpacing.heigthSpace10,
-                    const AppText(
-                      text: "A Few Lines About Me",
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                    const AppText(
-                        fontSize: 12,
-                        color: Colors.grey,
-                        text:
-                            "Lorem ipsum, placeholder or dummy text used in typesetting and graphic design for previewing layouts. It features scrambled Latin text, which emphasizes the design over content of the layout. It is the standard placeholder text of the printing and publishing industries"),
-                    AppSpacing.heigthSpace20,
-                    const AppText(
-                      text: "Basic Details",
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                    AppSpacing.heigthSpace10,
-                    Row(
+              GetBuilder<MatchesDetailController>(
+                  init: MatchesDetailController(),
+                  initState: (state) {},
+                  builder: (controller) {
+                    return Column(
                       children: [
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
-                            AppText(text: "Name"),
-                            AppText(text: "Age"),
-                            AppText(text: "Height"),
-                            AppText(text: "Status"),
-                            AppText(text: "Religion"),
-                            AppText(text: "Language"),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.changeIndex(0);
+                                },
+                                child: Column(
+                                  children: [
+                                    AppText(
+                                      text: "Personal Info",
+                                      color: controller.selectedIndex == 0
+                                          ? AppColors.primaryColor
+                                          : Colors.grey.withOpacity(0.7),
+                                      fontSize: 11,
+                                    ),
+                                    SizedBox(
+                                        child: Divider(
+                                      thickness: 2,
+                                      color: controller.selectedIndex == 0
+                                          ? AppColors.primaryColor
+                                          : Colors.grey.withOpacity(0.7),
+                                    )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.changeIndex(1);
+                                },
+                                child: Column(
+                                  children: [
+                                    AppText(
+                                      text: "Religion Info",
+                                      fontSize: 11,
+                                      color: controller.selectedIndex == 1
+                                          ? AppColors.primaryColor
+                                          : Colors.grey.withOpacity(0.7),
+                                    ),
+                                    SizedBox(
+                                        child: Divider(
+                                      thickness: 2,
+                                      color: controller.selectedIndex == 1
+                                          ? AppColors.primaryColor
+                                          : Colors.grey.withOpacity(0.7),
+                                    )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.changeIndex(2);
+                                },
+                                child: Column(
+                                  children: [
+                                    AppText(
+                                      text: "Preferences",
+                                      fontSize: 11,
+                                      color: controller.selectedIndex == 2
+                                          ? AppColors.primaryColor
+                                          : Colors.grey.withOpacity(0.7),
+                                    ),
+                                    SizedBox(
+                                        child: Divider(
+                                      thickness: 2,
+                                      color: controller.selectedIndex == 2
+                                          ? AppColors.primaryColor
+                                          : Colors.grey.withOpacity(0.7),
+                                    )),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.changeIndex(3);
+                                },
+                                child: Column(
+                                  children: [
+                                    AppText(
+                                      text: "Professional Info",
+                                      fontSize: 11,
+                                      color: controller.selectedIndex == 3
+                                          ? AppColors.primaryColor
+                                          : Colors.grey.withOpacity(0.7),
+                                    ),
+                                    SizedBox(
+                                        child: Divider(
+                                      thickness: 2,
+                                      color: controller.selectedIndex == 3
+                                          ? AppColors.primaryColor
+                                          : Colors.grey.withOpacity(0.7),
+                                    )),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.25,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppText(text: widget.match.name),
-                            const AppText(text: "20"),
-                            const AppText(text: "4ft 2inc"),
-                            const AppText(text: "Single"),
-                            const AppText(text: "Islam"),
-                            const AppText(text: "English"),
-                          ],
-                        ),
+                        controller.selectedIndex == 0
+                            ? PersonalInfo(
+                                match: widget.match,
+                              )
+                            : controller.selectedIndex == 1
+                                ? const ReligionInfo()
+                                : controller.selectedIndex == 2
+                                    ? const Preferences()
+                                    : const ProfessionalInfo(),
                       ],
-                    ),
-                    AppSpacing.heigthSpace20,
-                    const AppText(
-                      text: "Habits",
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                    AppSpacing.heigthSpace10,
-                    Row(
-                      children: [
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppText(text: "Eating"),
-                            AppText(text: "Smoking"),
-                          ],
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.25,
-                        ),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppText(text: "Vegeterian"),
-                            AppText(text: "Non Smoking"),
-                          ],
-                        ),
-                      ],
-                    ),
-                    AppSpacing.heigthSpace20,
-                    const AppText(
-                      text: "Professional Information",
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                    AppSpacing.heigthSpace10,
-                    Row(
-                      children: [
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppText(text: "Education"),
-                            AppText(text: "Job"),
-                          ],
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.25,
-                        ),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            AppText(text: "MS"),
-                            AppText(text: "Not Specified"),
-                          ],
-                        ),
-                      ],
-                    ),
-                    AppSpacing.heigthSpace30,
-                  ],
-                ),
-              ),
+                    );
+                  }),
             ],
           ),
         ),
