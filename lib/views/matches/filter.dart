@@ -1,4 +1,3 @@
-import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
@@ -6,7 +5,6 @@ import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/widgets/app_button.dart';
 import 'package:nikahbay/widgets/app_field.dart';
 import 'package:nikahbay/widgets/app_text.dart';
-
 import '../../controllers/matches_controller/filter_controller.dart';
 
 class FilterScreen extends StatelessWidget {
