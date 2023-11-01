@@ -4,8 +4,10 @@ import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/matches/matches.dart';
+import 'package:nikahbay/views/profile_view/chats/chat_users.dart';
 import 'package:nikahbay/views/profile_view/notifications.dart';
 import 'package:nikahbay/views/profile_view/settings/settings.dart';
+import 'package:nikahbay/views/profile_view/subscripton_plan.dart';
 import 'package:nikahbay/widgets/app_cached_image.dart';
 import 'package:nikahbay/widgets/app_text.dart';
 
@@ -124,12 +126,17 @@ class ProfileView extends StatelessWidget {
                 ProfileWidget(
                   title: 'Subscription Plans',
                   icon: 'assets/icons/subscription.svg',
-                  onTap: () {},
+                  onTap: () {
+                    AppNavigation.to(context,
+                        nextPage: const SubscriptionPlan());
+                  },
                 ),
                 ProfileWidget(
                   title: 'Chats',
                   icon: 'assets/icons/chat.svg',
-                  onTap: () {},
+                  onTap: () {
+                    AppNavigation.to(context, nextPage: const ChatUsers());
+                  },
                 ),
                 ProfileWidget(
                   title: 'Notification',

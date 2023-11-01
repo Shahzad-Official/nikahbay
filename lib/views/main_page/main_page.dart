@@ -65,7 +65,9 @@ class _MainPageState extends State<MainPage> {
                   height: 30,
                   width: 30,
                   // ignore: deprecated_member_use
-                  color: _.selectedIndex == 0 ? AppColors.primaryColor : Colors.black,
+                  color: _.selectedIndex == 0
+                      ? AppColors.primaryColor
+                      : Colors.black,
                 ),
                 title: const AppText(
                   text: "Home",
@@ -77,7 +79,9 @@ class _MainPageState extends State<MainPage> {
                   height: 30,
                   width: 30,
                   // ignore: deprecated_member_use
-                  color: _.selectedIndex == 1 ? AppColors.primaryColor : Colors.black,
+                  color: _.selectedIndex == 1
+                      ? AppColors.primaryColor
+                      : Colors.black,
                 ),
                 title: const AppText(
                   text: "Matches",
@@ -85,14 +89,16 @@ class _MainPageState extends State<MainPage> {
               ),
               SalomonBottomBarItem(
                 icon: SvgPicture.asset(
-                  "assets/icons/search.svg",
+                  "assets/icons/star.svg",
                   height: 30,
                   width: 30,
                   // ignore: deprecated_member_use
-                  color: _.selectedIndex == 2 ? AppColors.primaryColor : Colors.black,
+                  color: _.selectedIndex == 2
+                      ? AppColors.primaryColor
+                      : Colors.black,
                 ),
                 title: const AppText(
-                  text: "Search",
+                  text: "Favorite",
                 ),
               ),
               SalomonBottomBarItem(
@@ -101,7 +107,9 @@ class _MainPageState extends State<MainPage> {
                   height: 30,
                   width: 30,
                   // ignore: deprecated_member_use
-                  color: _.selectedIndex == 3 ? AppColors.primaryColor : Colors.black,
+                  color: _.selectedIndex == 3
+                      ? AppColors.primaryColor
+                      : Colors.black,
                 ),
                 title: const AppText(
                   text: "Profile",
