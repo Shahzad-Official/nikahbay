@@ -1,3 +1,5 @@
+import 'package:country_picker/country_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class FilterController extends GetxController {
@@ -5,6 +7,21 @@ class FilterController extends GetxController {
   int? selectedAgeTo;
   String? maritalStatus;
   String? selectedReligion;
+  String? selectedCountry;
+
+  void changeSelectedCountry(String country) {
+    selectedCountry = country;
+    update();
+  }
+    void openCountryPicker(BuildContext context, FilterController controller) {
+    showCountryPicker(
+      context: context,
+      showPhoneCode: true,
+      onSelect: (Country country) {
+        controller.changeSelectedCountry(country.displayName);
+      },
+    );
+  }
 
   List<int> ageFrom = List.generate(55, (index) => 16 + index);
   List<int> ageTo = List.generate(55, (index) => 16 + index);

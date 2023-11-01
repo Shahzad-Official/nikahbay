@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
-import 'package:nikahbay/controllers/matches_controller/mtacches_detail.dart';
+import 'package:nikahbay/controllers/matches_controller/mtaches_detail.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/matches/matches.dart';
 import 'package:nikahbay/views/matches/mtaches_detail_screens/professional_info.dart';

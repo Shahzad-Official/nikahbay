@@ -1,3 +1,4 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
@@ -86,14 +87,66 @@ class FilterScreen extends StatelessWidget {
                       onValueChange: (Object? value) {
                         controller.changeStatus(value.toString());
                       }),
-                  DropdownContainer(
-                      hintText: "Country",
-                      label: "Select  Country",
-                      currentValue: controller.maritalStatus,
-                      items: controller.status,
-                      onValueChange: (Object? value) {
-                        controller.changeStatus(value.toString());
-                      }),
+                  AppSpacing.heigthSpace10,
+                  AppSpacing.heigthSpace5,
+                  const Row(
+                    children: [
+                      AppText(
+                        text: "Select your Country",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15,
+                      ),
+                    ],
+                  ),
+                  AppSpacing.heigthSpace20,
+                  InkWell(
+                    onTap: () {
+                      controller.openCountryPicker(context, controller);
+                    },
+                    child: Container(
+                      height: 60,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left:
+                                      MediaQuery.of(context).size.width * 0.10),
+                              child: AppText(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color(0xff7B7A7A),
+                                  text: controller.selectedCountry ??
+                                      "Select aCountry"),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  right:
+                                      MediaQuery.of(context).size.width * 0.05),
+                              child: const Icon(
+                                Icons.arrow_drop_down_outlined,
+                                color: Colors.grey,
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   DropdownContainer(
                       hintText: "Religion",
                       label: "Select your religion",
