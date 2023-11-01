@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
 import 'package:nikahbay/views/matches/matches.dart';
+import 'package:nikahbay/widgets/app_button.dart';
 import 'package:nikahbay/widgets/app_text.dart';
 
 class PersonalInfo extends StatefulWidget {
@@ -112,7 +113,22 @@ class _PersonalInfoState extends State<PersonalInfo> {
               ),
               AppSpacing.heigthSpace10,
               const AppText(text: "Cooking"),
+              AppSpacing.heigthSpace20,
+              const AppText(
+                text: "Contact Details",
+                fontWeight: FontWeight.w500,
+                color: Colors.grey,
+                fontSize: 16,
+              ),
+              AppSpacing.heigthSpace10,
+              const AppText(text: "+921*********"),
               AppSpacing.heigthSpace30,
+              AppButton(
+                height: 50,
+                text: "Upgrade to unlock contact details",
+                onTap: () {},
+              ),
+              AppSpacing.heigthSpace10,
             ],
           ),
         ),

@@ -2,15 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
+import 'package:nikahbay/utils/app_navigation.dart';
+import 'package:nikahbay/views/matches/matches.dart';
+import 'package:nikahbay/views/matches/matches_user_detail_page.dart';
 import 'package:nikahbay/widgets/app_button.dart';
 import 'package:nikahbay/widgets/app_cached_image.dart';
 import 'package:nikahbay/widgets/app_shadowcontainer.dart';
 import 'package:nikahbay/widgets/app_text.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final List<MatchData> matches = [
+    MatchData(
+      name: "Krisha Jones",
+      age: 26,
+      height: "5ft 2inch",
+      occupation: "Software Professional- Graduate",
+      location: "Peshawar - Pakistan",
+      imageUrl:
+          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww",
+    ),
+    MatchData(
+      name: "Krisha Jones",
+      age: 26,
+      height: "5ft 2inch",
+      occupation: "Software Professional- Graduate",
+      location: "Peshawar - Pakistan",
+      imageUrl:
+          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww",
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -156,78 +184,88 @@ class HomeView extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: List.generate(
-                    5,
+                    matches.length,
                     (index) {
+                      final match = matches[index];
+
                       return Padding(
                         padding: const EdgeInsets.only(
                           left: 12,
                           bottom: 20,
                           top: 10,
                         ),
-                        child: AppShadowcontainer(
-                          shape: BoxShape.rectangle,
-                          height: 180,
-                          width: MediaQuery.of(context).size.width * 0.40,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const ClipRRect(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10)),
-                                  child: AppCachedImage(
-                                    url:
-                                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-GhyeRCrZKqtN9dIZzm1cWi0kBuUTTlA3KI7jFS9k&s",
-                                    height: 100,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
+                        child: InkWell(
+                          onTap: () {
+                            AppNavigation.to(context,
+                                nextPage: MatchDetail(
+                                  match: match,
+                                ));
+                          },
+                          child: AppShadowcontainer(
+                            shape: BoxShape.rectangle,
+                            height: 180,
+                            width: MediaQuery.of(context).size.width * 0.40,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10),
+                                        topRight: Radius.circular(10)),
+                                    child: AppCachedImage(
+                                      url:
+                                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-GhyeRCrZKqtN9dIZzm1cWi0kBuUTTlA3KI7jFS9k&s",
+                                      height: 100,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 6, top: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Flexible(
-                                            child: AppText(
-                                              text: "Samantha Jones ",
-                                              fontWeight: FontWeight.w600,
-                                              maxLines: 1,
-                                              overFlow: TextOverflow.ellipsis,
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 6, top: 10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Flexible(
+                                              child: AppText(
+                                                text: "Samantha Jones ",
+                                                fontWeight: FontWeight.w600,
+                                                maxLines: 1,
+                                                overFlow: TextOverflow.ellipsis,
+                                              ),
                                             ),
-                                          ),
-                                          SvgPicture.asset(
-                                            "assets/icons/verify_tick.svg",
-                                            height: 12,
-                                            width: 12,
-                                          ),
-                                        ],
-                                      ),
-                                      AppSpacing.heigthSpace5,
-                                      const AppText(
-                                        text: "26yrs, 5ft 2inch",
-                                        fontSize: 11,
-                                        color:
-                                            Color.fromARGB(255, 179, 178, 178),
-                                      ),
-                                      const AppText(
-                                        text: "#1234 Multan Punjab",
-                                        fontSize: 11,
-                                        color:
-                                            Color.fromARGB(255, 179, 178, 178),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
+                                            SvgPicture.asset(
+                                              "assets/icons/verify_tick.svg",
+                                              height: 12,
+                                              width: 12,
+                                            ),
+                                          ],
+                                        ),
+                                        AppSpacing.heigthSpace5,
+                                        const AppText(
+                                          text: "26yrs, 5ft 2inch",
+                                          fontSize: 11,
+                                          color: Color.fromARGB(
+                                              255, 179, 178, 178),
+                                        ),
+                                        const AppText(
+                                          text: "#1234 Multan Punjab",
+                                          fontSize: 11,
+                                          color: Color.fromARGB(
+                                              255, 179, 178, 178),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
