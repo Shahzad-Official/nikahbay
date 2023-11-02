@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:nikahbay/constants/app_colors.dart';
+import 'package:nikahbay/widgets/app_shadowcontainer.dart';
 import 'package:nikahbay/widgets/app_text.dart';
 
 class AppField extends StatelessWidget {
@@ -103,79 +104,71 @@ class DropdownContainer extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          Container(
+          AppShadowcontainer(
+            shape: BoxShape.rectangle,
+            width: double.infinity,
             height: 60,
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: DropdownButtonFormField(
-                hint: Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Text(
-                    hintText ?? "",
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xff7B7A7A),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: DropdownButtonFormField(
+                  hint: Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Text(
+                      hintText ?? "",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff7B7A7A),
+                      ),
                     ),
                   ),
-                ),
-                icon:
-                    const Icon(Icons.arrow_drop_down_sharp, color: Colors.grey),
-                decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.all(0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.transparent),
+                  icon: const Icon(Icons.arrow_drop_down_sharp,
+                      color: Colors.grey),
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(0),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.transparent),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.transparent),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: const BorderSide(color: Colors.transparent),
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.transparent),
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: const Color(0xff7B7A7A),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: Colors.transparent),
-                  ),
-                ),
-                style: GoogleFonts.poppins(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: const Color(0xff7B7A7A),
-                ),
-                value: currentValue,
-                items: items
-                    .map(
-                      (e) => DropdownMenuItem(
-                        alignment: Alignment.centerLeft,
-                        value: e,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 22),
-                          child: Text(
-                            e,
-                            style: GoogleFonts.poppins(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: const Color(0xff7B7A7A),
+                  value: currentValue,
+                  items: items
+                      .map(
+                        (e) => DropdownMenuItem(
+                          alignment: Alignment.centerLeft,
+                          value: e,
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 22),
+                            child: Text(
+                              e,
+                              style: GoogleFonts.poppins(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                color: const Color(0xff7B7A7A),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                    .toList(),
-                onChanged: onValueChange,
-                alignment: Alignment.center,
+                      )
+                      .toList(),
+                  onChanged: onValueChange,
+                  alignment: Alignment.center,
+                ),
               ),
             ),
           ),
