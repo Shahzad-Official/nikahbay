@@ -179,7 +179,7 @@ class FilterScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w400,
                                     color: const Color(0xff7B7A7A),
                                     text: controller.selectedCountry ??
-                                        "Select aCountry"),
+                                        "Select Country"),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(

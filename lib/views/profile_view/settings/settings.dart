@@ -35,7 +35,8 @@ class SettingsScreen extends StatelessWidget {
                     title: "Edit Profile",
                     icon: 'assets/icons/edit.svg',
                     onTap: () {
-                      AppNavigation.to(context, nextPage: const EditProfile());
+                      AppNavigation.to(context,
+                          nextPage: const CompleteProfile(),);
                     },
                   ),
                   SizedBox(
