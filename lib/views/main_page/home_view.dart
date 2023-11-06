@@ -5,6 +5,7 @@ import 'package:nikahbay/constants/app_spacing.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/matches/matches.dart';
 import 'package:nikahbay/views/matches/matches_user_detail_page.dart';
+import 'package:nikahbay/views/profile_view/settings/complete_profile.dart';
 import 'package:nikahbay/widgets/app_button.dart';
 import 'package:nikahbay/widgets/app_cached_image.dart';
 import 'package:nikahbay/widgets/app_shadowcontainer.dart';
@@ -394,7 +395,10 @@ class _HomeViewState extends State<HomeView> {
                                 width: 120,
                                 text: "Add Details",
                                 fontSize: 14,
-                                onTap: () {},
+                                onTap: () {
+                                  AppNavigation.to(context,
+                                      nextPage: const CompleteProfile());
+                                },
                               ),
                             )
                           ],

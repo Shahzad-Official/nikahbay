@@ -5,9 +5,10 @@ import 'package:nikahbay/constants/app_spacing.dart';
 import 'package:nikahbay/controllers/profile_view_controller/settings_controller.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/profile_view/settings/about_us.dart';
-import 'package:nikahbay/views/profile_view/settings/edit_profile.dart';
+import 'package:nikahbay/views/profile_view/settings/complete_profile.dart';
 import 'package:nikahbay/views/profile_view/profile_view.dart';
 import 'package:nikahbay/views/profile_view/settings/privacy_poicy.dart';
+import 'package:nikahbay/views/profile_view/settings/verify_account.dart';
 import 'package:nikahbay/widgets/app_text.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -35,8 +36,27 @@ class SettingsScreen extends StatelessWidget {
                     title: "Edit Profile",
                     icon: 'assets/icons/edit.svg',
                     onTap: () {
-                      AppNavigation.to(context,
-                          nextPage: const CompleteProfile(),);
+                      AppNavigation.to(
+                        context,
+                        nextPage: const CompleteProfile(),
+                      );
+                    },
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Divider(
+                      thickness: 1,
+                      color: Colors.black.withOpacity(0.1),
+                    ),
+                  ),
+                  ProfileWidget(
+                    title: "Verfiy Account",
+                    icon: 'assets/icons/verify.svg',
+                    onTap: () {
+                      AppNavigation.to(
+                        context,
+                        nextPage: const VerifyAccount(),
+                      );
                     },
                   ),
                   SizedBox(
