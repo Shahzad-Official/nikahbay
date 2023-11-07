@@ -8,7 +8,7 @@ import 'package:nikahbay/views/profile_view/settings/about_us.dart';
 import 'package:nikahbay/views/profile_view/settings/complete_profile.dart';
 import 'package:nikahbay/views/profile_view/profile_view.dart';
 import 'package:nikahbay/views/profile_view/settings/privacy_poicy.dart';
-import 'package:nikahbay/views/profile_view/settings/verify_account.dart';
+import 'package:nikahbay/views/profile_view/settings/verification/verify_account.dart';
 import 'package:nikahbay/widgets/app_text.dart';
 
 class SettingsScreen extends StatelessWidget {
