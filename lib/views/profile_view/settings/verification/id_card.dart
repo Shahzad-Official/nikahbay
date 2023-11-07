@@ -7,7 +7,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/profile_view/settings/verification/verify_account.dart';
+import 'package:nikahbay/widgets/app_button.dart';
 import 'package:nikahbay/widgets/app_text.dart';
+
+import '../../../../constants/app_spacing.dart';
+import 'success_screen.dart';
 
 class IDCardCameraScreen extends StatefulWidget {
   const IDCardCameraScreen({super.key});
@@ -35,8 +39,7 @@ class _IDCardCameraScreenState extends State<IDCardCameraScreen> {
     _cameraController = CameraController(firstCamera, ResolutionPreset.high);
     _initializeControllerFuture = _cameraController!.initialize().then((_) {
       if (mounted) {
-        setState(
-            () {}); // Trigger a state update when the camera is initialized
+        setState(() {});
       }
     }).catchError((error) {
       if (kDebugMode) {
@@ -76,15 +79,26 @@ class _IDCardCameraScreenState extends State<IDCardCameraScreen> {
             },
             child: const Icon(Icons.arrow_back_ios_new_rounded)),
       ),
-      body: FutureBuilder<void>(
-        future: _initializeControllerFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return CameraPreview(_cameraController!);
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+      body: Column(
+        children: [
+          AppSpacing.heigthSpace20,
+          FutureBuilder<void>(
+            future: _initializeControllerFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Column(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: CameraPreview(_cameraController!)),
+                  ],
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -113,7 +127,7 @@ class IDCardViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         title: const AppText(text: "ID Card Preview"),
         leading: InkWell(
             onTap: () {
@@ -121,8 +135,36 @@ class IDCardViewScreen extends StatelessWidget {
             },
             child: const Icon(Icons.arrow_back_ios_new_rounded)),
       ),
-      body: Center(
-        child: Image.file(File(imagePath)),
+      body: Column(
+        children: [
+          Expanded(
+            flex: 5,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: SizedBox(
+                    width: double.infinity,
+                    child: Image.file(File(imagePath)))),
+          ),
+          AppSpacing.heigthSpace30,
+          Expanded(
+            child: Column(
+              children: [
+                const AppText(text: "Make Sure ID card picture is visible"),
+                AppSpacing.heigthSpace20,
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.80,
+                  child: AppButton(
+                    text: "Continue",
+                    onTap: () {
+                      AppNavigation.to(context,
+                          nextPage: const SuccessScreen());
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

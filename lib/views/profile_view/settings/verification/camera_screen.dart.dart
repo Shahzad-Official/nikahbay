@@ -147,7 +147,7 @@ class DisplayPictureScreen extends StatelessWidget {
                 AppButton(
                   text: "Next ",
                   onTap: () {
-                    AppNavigation.to(context, nextPage: IDCardCameraScreen());
+                    AppNavigation.to(context, nextPage: const IDCardCameraScreen());
                   
                   },
                 )
