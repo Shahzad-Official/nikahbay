@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
+import 'package:nikahbay/views/favorite_view/favorite_view.dart';
 import 'package:nikahbay/views/matches/matches.dart';
 import 'package:nikahbay/views/profile_view/chats/chat_users.dart';
 import 'package:nikahbay/views/profile_view/notifications.dart';
@@ -146,15 +147,17 @@ class ProfileView extends StatelessWidget {
                         nextPage: const NotificationScreen());
                   },
                 ),
-                ProfileWidget(
-                  title: 'Profile Views',
-                  icon: 'assets/icons/views.svg',
-                  onTap: () {},
-                ),
+                // ProfileWidget(
+                //   title: 'Profile Views',
+                //   icon: 'assets/icons/views.svg',
+                //   onTap: () {},
+                // ),
                 ProfileWidget(
                   title: 'Shortlisted',
                   icon: 'assets/icons/favorite.svg',
-                  onTap: () {},
+                  onTap: () {
+                    AppNavigation.to(context, nextPage: const FavoriteView());
+                  },
                 ),
                 AppSpacing.heigthSpace10,
                 Row(
