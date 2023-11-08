@@ -30,27 +30,29 @@ class SuccessScreen extends StatelessWidget {
             ),
             Image.asset(
               "assets/images/success.png",
-              width: MediaQuery.of(context).size.width * 0.50,
+              width: MediaQuery.of(context).size.width * 0.45,
             ),
             AppSpacing.heigthSpace30,
+            AppSpacing.heigthSpace20,
             const AppText(
               text: "Thank You!",
               color: AppColors.secondaryColor,
-              fontSize: 40,
-            ),
-            const AppText(
-              text: "Request Submitted Successfully",
-              fontSize: 17,
-              fontWeight: FontWeight.w500,
+              fontSize: 35,
             ),
             AppSpacing.heigthSpace10,
+            const AppText(
+              text: "Request Submitted Successfully",
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            AppSpacing.heigthSpace20,
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.80,
               child: const AppText(
                 text:
                     "Thank you for reaching out! Your message is valuable to us. Our team is dedicated to providing you with a prompt response, typically within two to three business days.",
                 fontStyle: FontStyle.italic,
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.justify,
               ),
             ),
             const Spacer(),
@@ -63,7 +65,7 @@ class SuccessScreen extends StatelessWidget {
                   onTap: () {
                     AppNavigation.to(context, nextPage: const MainPage());
                   },
-                  height: 55,
+                  height: 50,
                 ),
               ],
             ),
