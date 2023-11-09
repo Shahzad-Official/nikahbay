@@ -1,32 +1,36 @@
-// import 'package:camera/camera.dart';
-// import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:camera/camera.dart';
+import 'package:get/get.dart';
 
+class CameraVerifyController extends GetxController {
+  CameraController? camController;
+  Future<void>? initializeControllerFuture;
 
-// class CameraPictureController extends GetxController {
-//    CameraController? controller;
-//    Future<void>? initializeControllerFuture;
+  @override
+  void onInit() {
+    super.onInit();
+    _initializeCamera();
+  }
 
-//   CameraPictureController() {
-//     _initializeCamera();
-//   }
+  Future<void> _initializeCamera() async {
+    final cameras = await availableCameras();
+    final frontCamera = cameras.firstWhere(
+        (camera) => camera.lensDirection == CameraLensDirection.front);
 
-//   Future<void> _initializeCamera() async {
-//     final cameras = await availableCameras();
-//     final frontCamera = cameras.firstWhere(
-//       (camera) => camera.lensDirection == CameraLensDirection.front,
-//     );
+    camController = CameraController(
+      frontCamera,
+      ResolutionPreset.medium,
+    );
 
-//     controller = CameraController(
-//       frontCamera,
-//       ResolutionPreset.medium,
-//     );
+    initializeControllerFuture = camController!.initialize();
+    if (camController != null) update();
+  }
 
-//     initializeControllerFuture = controller!.initialize();
-//   }
+  @override
+  void onClose() {
+    if (camController != null) {
+      camController!.dispose();
+    }
+    super.onClose();
+  }
+}
 
-//   @override
-//   void dispose() {
-//     controller!.dispose();
-//     super.dispose();
-//   }
-// }

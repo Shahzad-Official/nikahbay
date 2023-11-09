@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:get/get.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
+import 'package:nikahbay/controllers/profile_view_controller/camera_controller.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/profile_view/settings/verification/id_card.dart';
 import 'package:nikahbay/widgets/app_button.dart';
@@ -18,37 +20,6 @@ class CamerScreen extends StatefulWidget {
 }
 
 class _CamerScreenState extends State<CamerScreen> {
-  CameraController? _controller;
-  Future<void>? _initializeControllerFuture;
-
-  @override
-  void initState() {
-    super.initState();
-    _initializeCamera();
-  }
-
-  Future<void> _initializeCamera() async {
-    final cameras = await availableCameras();
-    final frontCamera = cameras.firstWhere(
-        (camera) => camera.lensDirection == CameraLensDirection.front);
-
-    _controller = CameraController(
-      frontCamera,
-      ResolutionPreset.medium,
-    );
-
-    _initializeControllerFuture = _controller!.initialize();
-    if (!mounted) return;
-
-    setState(() {});
-  }
-
-  @override
-  void dispose() {
-    _controller!.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,46 +31,54 @@ class _CamerScreenState extends State<CamerScreen> {
             },
             child: const Icon(Icons.arrow_back_ios_new_rounded)),
       ),
-      body: Column(
-        children: [
-          AppSpacing.heigthSpace20,
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: FutureBuilder<void>(
-              future: _initializeControllerFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  return CameraPreview(_controller!);
-                } else {
-                  return const Center(child: CircularProgressIndicator());
+      body: GetBuilder<CameraVerifyController>(
+          init: CameraVerifyController(),
+          builder: (controller) {
+            return Column(
+              children: [
+                AppSpacing.heigthSpace20,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: FutureBuilder<void>(
+                    future: controller.initializeControllerFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done) {
+                        return CameraPreview(controller.camController!);
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ),
+                ),
+              ],
+            );
+          }),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: GetBuilder<CameraVerifyController>(
+          init: CameraVerifyController(),
+          builder: (con) {
+            return FloatingActionButton(
+              backgroundColor: AppColors.primaryColor,
+              child: const Icon(Icons.camera_alt),
+              onPressed: () async {
+                try {
+                  await con.initializeControllerFuture;
+
+                  final image = await con.camController!.takePicture();
+
+                  // ignore: use_build_context_synchronously
+                  AppNavigation.to(
+                    context,
+                    nextPage: DisplayPictureScreen(imagePath: image.path),
+                  );
+                } catch (e) {
+                  if (kDebugMode) {
+                    print(e);
+                  }
                 }
               },
-            ),
-          ),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primaryColor,
-        child: const Icon(Icons.camera_alt),
-        onPressed: () async {
-          try {
-            await _initializeControllerFuture;
-
-            final image = await _controller!.takePicture();
-
-            // ignore: use_build_context_synchronously
-            AppNavigation.to(
-              context,
-              nextPage: DisplayPictureScreen(imagePath: image.path),
             );
-          } catch (e) {
-            if (kDebugMode) {
-              print(e);
-            }
-          }
-        },
-      ),
+          }),
     );
   }
 }
@@ -147,8 +126,8 @@ class DisplayPictureScreen extends StatelessWidget {
                 AppButton(
                   text: "Next ",
                   onTap: () {
-                    AppNavigation.to(context, nextPage: const IDCardCameraScreen());
-                  
+                    AppNavigation.to(context,
+                        nextPage:  IDCardCameraScreen());
                   },
                 )
               ],
