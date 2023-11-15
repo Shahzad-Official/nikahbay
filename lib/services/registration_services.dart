@@ -8,7 +8,6 @@ import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/utils/app_snackbar.dart';
 import 'package:nikahbay/views/main_page/main_page.dart';
 import 'package:nikahbay/views/registeration/otp_verification.dart';
-import 'package:nikahbay/views/registeration/reset_password.dart';
 import 'package:nikahbay/views/registeration/successfull_registration.dart';
 
 class RegistrationServices {
@@ -79,7 +78,7 @@ class RegistrationServices {
     bool isAfterVerification = false,
   }) async {
     var body = jsonEncode({
-      "email": email,
+      "userName": email,
       "password": password,
     });
     await post(
@@ -166,7 +165,6 @@ class RegistrationServices {
     }).catchError((err) {
       debugPrint(err.toString());
       AppSnackbar.showSnackbar(title: "Error", message: err.toString());
-      // AppSnackbar.showSnackbar(title: "Error", message: "Something went wrong please try again later!");
     });
   }
 
@@ -191,12 +189,7 @@ class RegistrationServices {
       if (value.statusCode == 200) {
         AppSnackbar.showSnackbar(title: "Success", message: data['message']);
         if (isForgetEmail) {
-          AppNavigation.offAll(
-            context,
-            nextPage: ResetPassword(
-              email: email,
-            ),
-          );
+          AppNavigation.to(context, nextPage: const MainPage());
         } else {
           login(
             context,
@@ -222,40 +215,6 @@ class RegistrationServices {
     });
   }
 
-  forgetPassword(
-    context, {
-    required String email,
-    required String password,
-  }) async {
-    var body = jsonEncode({
-      "email": email,
-      "password": password,
-    });
-    await post(
-      Uri.parse(ApiConstant.baseUrl + ApiConstant.forgetPassword),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: body,
-    ).then((value) {
-      var data = jsonDecode(value.body);
-      if (value.statusCode == 200) {
-        AppSnackbar.showSnackbar(title: "Success", message: data['message']);
-        AppNavigation.offAll(
-          context,
-          nextPage: const SuccessfullRegistration(
-            isForgetPass: true,
-          ),
-        );
-      } else {
-        AppSnackbar.showSnackbar(title: "Error", message: data['message']);
-      }
-    }).catchError((err) {
-      debugPrint(err.toString());
-      AppSnackbar.showSnackbar(title: "Error", message: err.toString());
-      // AppSnackbar.showSnackbar(title: "Error", message: "Something went wrong please try again later!");
-    });
-  }
 
   Future<UserData> getUserData(String userId) async {
     UserData userData = UserData();

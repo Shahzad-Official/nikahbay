@@ -10,7 +10,6 @@ class ApiConstant {
   static const verifyOtp = "/user/verify";
   static const updateProfile = "/user/update-profile";
   static const updatePassword = "/user/update-password";
-  static const forgetPassword = "/user/forget-password";
   static const sendOtp = "/user/send-otp";
   static const getUserData = "/user/";
   static const updateFcm = "/user/update-fcm";

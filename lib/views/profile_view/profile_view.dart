@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
+import 'package:nikahbay/main.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/favorite_view/favorite_view.dart';
 import 'package:nikahbay/views/matches/matches.dart';
@@ -9,6 +11,7 @@ import 'package:nikahbay/views/profile_view/chats/chat_users.dart';
 import 'package:nikahbay/views/profile_view/notifications.dart';
 import 'package:nikahbay/views/profile_view/settings/settings.dart';
 import 'package:nikahbay/views/profile_view/subscripton_plan.dart';
+import 'package:nikahbay/views/registeration/login.dart';
 import 'package:nikahbay/widgets/app_cached_image.dart';
 import 'package:nikahbay/widgets/app_text.dart';
 
@@ -160,18 +163,30 @@ class ProfileView extends StatelessWidget {
                   },
                 ),
                 AppSpacing.heigthSpace10,
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/logout.svg',
-                      height: 30,
-                      width: MediaQuery.of(context).size.width * 0.08,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const AppText(text: "Logout")
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    box.put("isLoggedIn", null);
+                    box.deleteAt(0);
+                    Get.deleteAll();
+
+                    AppNavigation.offAll(
+                      context,
+                      nextPage: const Login(),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/icons/logout.svg',
+                        height: 30,
+                        width: MediaQuery.of(context).size.width * 0.08,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const AppText(text: "Logout")
+                    ],
+                  ),
                 )
               ],
             ),

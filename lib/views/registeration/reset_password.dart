@@ -99,7 +99,6 @@ class _ResetPasswordState extends State<ResetPassword> {
                 return AppButton(
                   isLoading: _.isLoading,
                   onTap: () async {
-                    await _.resetPass(context);
                   },
                   text: "RESET PASSWORD",
                 );

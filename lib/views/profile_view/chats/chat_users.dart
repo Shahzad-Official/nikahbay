@@ -28,7 +28,7 @@ class ChatUsers extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  AppNavigation.to(context, nextPage: MessagesScreen());
+                  AppNavigation.to(context, nextPage: const MessagesScreen());
                 },
                 child: SizedBox(
                   height: 100,

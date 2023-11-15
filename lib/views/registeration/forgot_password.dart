@@ -6,7 +6,6 @@ import 'package:nikahbay/constants/app_spacing.dart';
 import 'package:nikahbay/controllers/registeration_controllers/forget_password_controller.dart';
 import 'package:nikahbay/utils/app_navigation.dart';
 import 'package:nikahbay/views/registeration/login.dart';
-import 'package:nikahbay/views/registeration/otp_verification.dart';
 import 'package:nikahbay/widgets/app_button.dart';
 import 'package:nikahbay/widgets/app_field.dart';
 import 'package:nikahbay/widgets/app_text.dart';
@@ -19,7 +18,8 @@ class ForgetPassword extends StatefulWidget {
 }
 
 class _ForgetPasswordState extends State<ForgetPassword> {
-  final ForgetPasswordController _controller = Get.put(ForgetPasswordController());
+  final ForgetPasswordController _controller =
+      Get.put(ForgetPasswordController());
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -58,13 +58,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                   return AppButton(
                     isLoading: _.isLoading,
                     onTap: () async {
-                      AppNavigation.to(
-                        context,
-                        nextPage: const OtpVerification(
-                          email: "email",
-                          isForgetEmail: true,
-                        ),
-                      );
+                      await _.sendOtp(context);
                     },
                     text: "RESET PASSWORD",
                   );

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nikahbay/services/registration_services.dart';
-import 'package:nikahbay/utils/app_snackbar.dart';
+
 
 class ResetPasswordController extends GetxController {
   TextEditingController password = TextEditingController();
@@ -20,24 +19,7 @@ class ResetPasswordController extends GetxController {
   }
 
   bool isLoading = false;
-  resetPass(context) async {
-    isLoading = true;
-    update();
-    if (password.text.isEmpty || password.text.length < 6) {
-      AppSnackbar.showSnackbar(
-          title: "Error",
-          message: "Please enter password having at least 6 characters!");
-    } else if (password.text != cpassword.text) {
-      AppSnackbar.showSnackbar(
-          title: "Error", message: "Please check your confirm password!");
-    } else {
-      await RegistrationServices().forgetPassword(
-        context,
-        email: email,
-        password: password.text,
-      );
-    }
-    isLoading = false;
-    update();
-  }
+ 
+
+
 }
