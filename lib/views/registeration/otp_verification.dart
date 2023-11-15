@@ -30,7 +30,10 @@ class _OtpVerificationState extends State<OtpVerification> {
   final defaultPinTheme = PinTheme(
     width: 56,
     height: 56,
-    textStyle: const TextStyle(fontSize: 20, color: Color.fromRGBO(30, 60, 87, 1), fontWeight: FontWeight.w600),
+    textStyle: const TextStyle(
+        fontSize: 20,
+        color: Color.fromRGBO(30, 60, 87, 1),
+        fontWeight: FontWeight.w600),
     decoration: BoxDecoration(
       border: Border.all(color: AppColors.primaryColor),
       borderRadius: BorderRadius.circular(20),
@@ -47,7 +50,7 @@ class _OtpVerificationState extends State<OtpVerification> {
 
   get submittedPinTheme => defaultPinTheme.copyWith(
         decoration: defaultPinTheme.decoration!.copyWith(
-          color: AppColors.secondaryColor.withOpacity(0.1),
+          color: const Color.fromARGB(255, 253, 219, 195).withOpacity(0.2),
         ),
       );
 
@@ -90,7 +93,8 @@ class _OtpVerificationState extends State<OtpVerification> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: "A Verification Code has been sent to your email check your email:",
+                      text:
+                          "A Verification Code has been sent to your email check your email:",
                       style: GoogleFonts.poppins(
                         fontSize: 17,
                         color: Colors.black,
@@ -135,12 +139,17 @@ class _OtpVerificationState extends State<OtpVerification> {
                             ),
                           ),
                           TextSpan(
-                            text: _.isOtpExpires ? "Resend Code" : "${_.otpTime}",
+                            text:
+                                _.isOtpExpires ? "Resend Code" : "${_.otpTime}",
                             style: GoogleFonts.poppins(
                               fontSize: 17,
-                              color: _.isOtpExpires ? AppColors.primaryColor : Colors.black,
+                              color: _.isOtpExpires
+                                  ? AppColors.primaryColor
+                                  : Colors.black,
                               fontWeight: FontWeight.w600,
-                              decoration: _.isOtpExpires ? TextDecoration.underline : null,
+                              decoration: _.isOtpExpires
+                                  ? TextDecoration.underline
+                                  : null,
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () async {
@@ -174,7 +183,8 @@ class _OtpVerificationState extends State<OtpVerification> {
                     isLoading: _.isLoading,
                     onTap: () async {
                       _controller.email = widget.email;
-                      await _.verifyOtp(context, isForgetEmail: widget.isForgetEmail);
+                      await _.verifyOtp(context,
+                          isForgetEmail: widget.isForgetEmail);
                     },
                     text: "VERIFY",
                   );

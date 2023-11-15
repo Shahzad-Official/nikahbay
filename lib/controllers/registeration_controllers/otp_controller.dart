@@ -2,9 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:nikahbay/utils/app_navigation.dart';
+import 'package:nikahbay/services/registration_services.dart';
 import 'package:nikahbay/utils/app_snackbar.dart';
-import 'package:nikahbay/views/registeration/successfull_registration.dart';
 
 class OtpController extends GetxController {
   TextEditingController otp = TextEditingController();
@@ -24,7 +23,11 @@ class OtpController extends GetxController {
   resendOtp(context) async {
     isResending = true;
     update();
-
+    await RegistrationServices().sendOtp(
+      context,
+      email: email,
+      isResend: true,
+    );
     isResending = false;
     update();
   }
@@ -64,17 +67,17 @@ class OtpController extends GetxController {
   bool isLoading = false;
   verifyOtp(context, {required bool isForgetEmail}) async {
     if (otp.text.isEmpty || otp.text.length < 5) {
-      AppSnackbar.showSnackbar(title: "Error", message: "Please enter valid otp!");
+      AppSnackbar.showSnackbar(
+          title: "Error", message: "Please enter valid otp!");
     } else {
       isLoading = true;
       update();
-      AppNavigation.offAll(
+      await RegistrationServices().verifyOtp(
         context,
-        nextPage: SuccessfullRegistration(
-          isForgetPass: isForgetEmail,
-        ),
+        email: email,
+        isForgetEmail: isForgetEmail,
+        otp: otp.text,
       );
-
       isLoading = false;
       update();
     }

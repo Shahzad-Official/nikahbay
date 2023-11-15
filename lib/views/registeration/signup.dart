@@ -170,7 +170,7 @@ class _SignupState extends State<Signup> {
               ),
               AppSpacing.heigthSpace20,
               AppField(
-                controller: _controller.firstName,
+                controller: _controller.userName,
                 hintText: "Username",
                 prefixIcon: const Icon(
                   Icons.person,
@@ -194,6 +194,71 @@ class _SignupState extends State<Signup> {
                 onChanged: (number) {
                   _controller.countryCode = number.countryCode;
                 },
+              ),
+              AppSpacing.heigthSpace20,
+              const AppText(
+                text: "Select Gender:",
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
+              ),
+              GetBuilder<SignupController>(
+                init: SignupController(),
+                initState: (_) {},
+                builder: (_) {
+                  return RadioListTile(
+                    value: "Male",
+                    groupValue: _.groupValue,
+                    onChanged: (value) {
+                      _.changeGender(value.toString());
+                    },
+                    title: const AppText(
+                      text: "Male",
+                    ),
+                  );
+                },
+              ),
+              GetBuilder<SignupController>(
+                init: SignupController(),
+                initState: (_) {},
+                builder: (_) {
+                  return RadioListTile(
+                    value: "Female",
+                    groupValue: _.groupValue,
+                    onChanged: (value) {
+                      _.changeGender(value.toString());
+                    },
+                    title: const AppText(
+                      text: "Female",
+                    ),
+                  );
+                },
+              ),
+              GetBuilder<SignupController>(
+                init: SignupController(),
+                initState: (_) {},
+                builder: (_) {
+                  return RadioListTile(
+                    value: "Other",
+                    groupValue: _.groupValue,
+                    onChanged: (value) {
+                      _.changeGender(value.toString());
+                    },
+                    title: const AppText(
+                      text: "Other",
+                    ),
+                  );
+                },
+              ),
+              AppSpacing.heigthSpace20,
+              AppField(
+                readOnly: true,
+                controller: _controller.location,
+                onTap: () async {
+                  await _controller.pickLocation(context);
+                },
+                suffixIcon: const Icon(
+                  Icons.location_on_outlined,
+                ),
               ),
               AppSpacing.heigthSpace20,
               GetBuilder<SignupController>(

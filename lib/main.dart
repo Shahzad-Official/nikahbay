@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:nikahbay/controllers/theme.dart';
-import 'package:nikahbay/views/main_page/main_page.dart';
+import 'views/splashscreen.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox("data");
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
+
+Box box = Hive.box("data");
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -22,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: Themes().lightTheme,
       darkTheme: Themes().darkTheme,
-      home: const MainPage(),
+      home: const SplashScreen(),
     );
   }
 }

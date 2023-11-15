@@ -17,7 +17,8 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
-  final ResetPasswordController _controller = Get.put(ResetPasswordController());
+  final ResetPasswordController _controller =
+      Get.put(ResetPasswordController());
   @override
   void initState() {
     _controller.email = widget.email;
@@ -55,7 +56,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                       _.changeObsecurity();
                     },
                     icon: Icon(
-                      _.isObsecure ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                      _.isObsecure
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
                     ),
                   ),
                 );
@@ -80,7 +83,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                       _.changeObsecurity1();
                     },
                     icon: Icon(
-                      _.isObsecure1 ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+                      _.isObsecure1
+                          ? Icons.visibility_outlined
+                          : Icons.visibility_off_outlined,
                     ),
                   ),
                 );

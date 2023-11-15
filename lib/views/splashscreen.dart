@@ -1,9 +1,16 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:nikahbay/constants/app_colors.dart';
 import 'package:nikahbay/constants/app_spacing.dart';
+import 'package:nikahbay/main.dart';
+import 'package:nikahbay/utils/app_navigation.dart';
+import 'package:nikahbay/views/main_page/main_page.dart';
 import 'package:nikahbay/views/registeration/login.dart';
 import 'package:nikahbay/widgets/app_logo.dart';
+import 'package:http/http.dart' as http;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,15 +20,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
+    @override
   void initState() {
+    try {
+      http.get(Uri.parse('http://ip-api.com/json')).then((value) {
+        box.put("myCountryCode", json.decode(value.body)['countryCode']);
+      });
+    } on SocketException catch (err) {
+      debugPrint(err.message);
+    }
+    Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        AppNavigation.offAll(
+            context,
+            nextPage: box.get("isLoggedIn") != null && box.get("isLoggedIn") == true ? const MainPage() : const Login(),
+          );
+      },
+    );
     super.initState();
-    Future.delayed(const Duration(seconds: 4), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => const Login(),
-      ));
-    });
   }
+
+  @override
+ 
 
   @override
   Widget build(BuildContext context) {
