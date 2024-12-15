@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "151669850743",
+    "project_id": "nikah-bay",
+    "storage_bucket": "nikah-bay.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151669850743:android:f7f0cef92fb0cecce7fc72",
+        "android_client_info": {
+          "package_name": "com.nikahbay.nikahbay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuKRCiSlo1RW73IsgWj81MzeI_S9M-Sq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

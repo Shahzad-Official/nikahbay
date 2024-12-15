@@ -20,7 +20,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-    @override
+  @override
   void initState() {
     try {
       http.get(Uri.parse('http://ip-api.com/json')).then((value) {
@@ -33,16 +33,16 @@ class _SplashScreenState extends State<SplashScreen> {
       const Duration(seconds: 3),
       () {
         AppNavigation.offAll(
-            context,
-            nextPage: box.get("isLoggedIn") != null && box.get("isLoggedIn") == true ? const MainPage() : const Login(),
-          );
+          context,
+          nextPage:
+              box.get("isLoggedIn") != null && box.get("isLoggedIn") == true
+                  ? const MainPage()
+                  : const Login(),
+        );
       },
     );
     super.initState();
   }
-
-  @override
- 
 
   @override
   Widget build(BuildContext context) {
